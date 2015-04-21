@@ -104,7 +104,8 @@ case class Deal(
                bidfloorcur:String = "USD",
                at:Option[Int],
                wseat:Option[List[String]],
-               wadomain:Option[]
+               wadomain:Option[List[String]],
+               ext:Option[Ext]
                  )
 case class Data(
                id:Option[String],
@@ -216,8 +217,8 @@ case class Imp(id:String,
                 native:Option[Native],
                 displaymanager:Option[String],
                displaymanagerver:Option[String],
- nt               instl:Int = 0,
-                tagid:String,
+                instl:Int = 0,
+                tagid:Option[String],
                 bidfloor:Float = 0,
                 bidfloorcur:String = "USD",
                 secure:Option[Int],
@@ -229,7 +230,7 @@ case class User(id:String)
 case class App(id:String)
 case class Regs(id:String)
 case class Ext(id:String)
-case class RequestBid(
+case class BidRequest(
                        id:String,
                        imp:List[Imp],
                        site:Option[App],
