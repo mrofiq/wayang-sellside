@@ -9,7 +9,7 @@ import scala.collection.mutable._
 /**
  * Created by rofiq on 4/20/15.
  */
-class RoomActor extends Actor {
+class RoomActor(request:BidRequest) extends Actor {
   val bids:Buffer[Bid] = Buffer.empty
 
   override def receive = {
