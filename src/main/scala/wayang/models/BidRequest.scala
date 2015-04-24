@@ -100,7 +100,7 @@ case class Pmp(
                 )
 case class Deal(
                id:String,
-               bidfloor:Float = 0.0,
+               bidfloor: BigDecimal = 0.0,
                bidfloorcur:String = "USD",
                at:Option[Int],
                wseat:Option[List[String]],
@@ -212,23 +212,19 @@ case class Banner(
                  ext:Option[Ext]
                    )
 case class Imp(id:String,
-                banner:Option[Banner],
-                video:Option[Video],
-                native:Option[Native],
-                displaymanager:Option[String],
-               displaymanagerver:Option[String],
+               banner: Option[Banner] = None,
+               video: Option[Video] = None,
+               native: Option[Native] = None,
+               displaymanager: Option[String] = None,
+               displaymanagerver: Option[String] = None,
                 instl:Int = 0,
-                tagid:Option[String],
+               tagid: Option[String] = None,
                 bidfloor:BigDecimal = 0,
                 bidfloorcur:String = "USD",
-                secure:Option[Int],
-                iframebuster:Option[List[String]],
-                pmp:Option[Pmp],
-                ext:Option[Ext])
-case class Device(id:String)
-case class User(id:String)
-case class App(id:String)
-case class Regs(id:String)
+               secure: Option[Int] = None,
+               iframebuster: Option[List[String]] = None,
+               pmp: Option[Pmp] = None,
+               ext: Option[Ext] = None)
 case class Ext(id:String)
 case class BidRequest(
                        id:String,
