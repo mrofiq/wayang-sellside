@@ -21,7 +21,7 @@ with WordSpecLike with Matchers with BeforeAndAfterAll {
   "A Auction actor" must {
     "send reject on price lower than imp req" in {
       val tradeActor = system.actorOf(Props[TradeActor])
-      val imp = Imp(id="123")
+      val imp = Imp(id = "123")
       tradeActor ! imp
       expectMsgClass(10 millis, classOf[RoomActor])
     }
@@ -32,8 +32,7 @@ with WordSpecLike with Matchers with BeforeAndAfterAll {
       val bid2 = Bid("123", "123", 10.4)
       roomActor ! bid1
       roomActor ! bid2
-      expectMsg(Winner(bid2))
+      expectMsg(Winner(Some(bid2)))
     }
   }
-
 }

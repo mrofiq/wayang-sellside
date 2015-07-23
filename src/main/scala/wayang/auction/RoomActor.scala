@@ -12,7 +12,7 @@ import akka.event.Logging
  */
 case class Reject(bid:Bid)
 
-case class Winner(bid: Bid)
+case class Winner(bid: Option[Bid])
 
 class RoomActor(imp:Imp) extends Actor {
 
@@ -32,13 +32,16 @@ class RoomActor(imp:Imp) extends Actor {
       }
       else
         sender() ! Reject(bid)
+
     case "timeout" =>
       log.info("timeout")
       // order bid
       if (!bids.isEmpty) {
         val winner = bids.reduceLeft((x, y) => if (x._2.price > y._2.price) x else y)
-        val parent = context.actorSelection("..")
-        winner._1 ! Winner(winner._2)
+        winner._1 ! Winner(Some(winner._2))
+      } else {
+        log.info("NO WINNER")
+        context.parent ! Winner(None)
       }
   }
 }
